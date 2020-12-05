@@ -68,3 +68,37 @@ Benchmark with gather communication
 Average bandwidth 1.552046 GB/s
 ```
 
+## 作业三（使用MPICH）
+
+#### 编译
+
+```
+mpicc mpiio.c -o mpiio 
+```
+
+### 运行
+
+```
+mpiexec -np num_procs ./mpiio reading_ratios -p data_sizes
+```
+
+比如用3个进程测试读占比为1.0和0.0，数据包大小为10KB和20KB
+
+```
+mpiexec -np 3 ./mpiio 1.0 0.0 -p 10 20
+```
+
+要完成功能3和4的指定节点集和单节点的进程数，可以使用mpiexec的configfile
+
+```
+mpiexec -configfile configfile
+```
+
+configfile的格式为
+
+```
+-n 3 -host host1 ./mpiio 1.0 0.0 -p 10 20
+-n 2 -host host2 ./mpiio 1.0 0.0 -p 10 20
+-n 3 -host host3 ./mpiio 1.0 0.0 -p 10 20
+```
+

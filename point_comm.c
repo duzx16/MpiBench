@@ -31,9 +31,7 @@ int main(int argc, char *argv[]) {
     double start_time, end_time, time_cost, average_time;
     char *p;// dynamically allocate memory
 
-
-
-
+    MPI_Init(&argc, &argv); // init mpi environment
     MPI_Comm_size(MPI_COMM_WORLD, &nprocs); // get the number of processes
     MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);// get the local rank
     MPI_Status status;
